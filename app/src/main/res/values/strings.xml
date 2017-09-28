@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">kdehaan-CountBook</string>
+    <string name="num_counter">0 Counters</string>
+    <string name="new_counter">Add Counter</string>
+</resources>
