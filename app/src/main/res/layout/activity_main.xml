@@ -26,7 +26,7 @@
         android:text="@string/num_counter" />
     <Button
         android:id="@+id/newCounter"
-        android:onclick="editCounter"
+        android:onClick="editCounter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/new_counter" />

@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
             counters = gson.fromJson(in, listType);
         } catch(FileNotFoundException e) {
             counters = new ArrayList<>();
-        } catch(IOException e) {
+        } /*catch(IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     private void saveInFile() {
@@ -104,8 +104,6 @@ public class MainActivity extends AppCompatActivity {
             gson.toJson(counters, writer);
             writer.flush();
             fos.close();
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
         } catch(IOException e) {
             e.printStackTrace();
         }
