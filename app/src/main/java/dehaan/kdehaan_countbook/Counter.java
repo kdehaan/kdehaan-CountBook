@@ -71,6 +71,18 @@ public class Counter {
         this.currentValue -= 1;
     }
 
+
+    /**
+     * Get string representation of Counter
+     *
+     * @return string of Counter
+     */
+    @Override
+    public String toString() {
+        return name.toString() + " " + currentValue.toString() + " " + date.toString();
+
+    }
+
     /**
      * Gets name of Counter
      *

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView CounterList;
 
-    private ArrayList<Counter> counters = new ArrayList<Counter>();
+    private ArrayList<Counter> counters = new ArrayList<>();
     private ArrayAdapter<Counter> adapter;
 
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button addButton = (Button) findViewById(R.id.createCounter);
+        Button clearButton = (Button) findViewById(R.id.clearCounters);
         CounterList = (ListView) findViewById(R.id.CounterList);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -50,13 +52,23 @@ public class MainActivity extends AppCompatActivity {
                 saveInFile();
             }
         });
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+                counters.clear();
+                saveInFile();
+                adapter.notifyDataSetChanged();
+
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         loadFromFile();
-        adapter = new ArrayAdapter<Counter>(this, R.layout.list_item, counters);
+        adapter = new ArrayAdapter<>(this, R.layout.list_item, counters);
         CounterList.setAdapter(adapter);
     }
 
@@ -68,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             Type listType = new TypeToken<ArrayList<Counter>>() {}.getType();
             counters = gson.fromJson(in, listType);
         } catch(FileNotFoundException e) {
-            counters = new ArrayList<Counter>();
+            counters = new ArrayList<>();
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
