@@ -3,35 +3,43 @@ package dehaan.kdehaan_countbook;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 
 public class createCounterActivity extends AppCompatActivity {
+    private Gson gson = new Gson();
+    private Intent intent;
+    private String gsonCounter;
+    private Counter counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Gson gson = new Gson();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_counter);
 
-        Intent intent = getIntent();
-        String gsonMessage = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        intent = getIntent();
+        gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-
-        Counter newCounter = gson.fromJson(gsonMessage, Counter.class);
+        counter = gson.fromJson(gsonCounter, Counter.class);
 
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(newCounter.toString());
-
-        intent.putExtra("gsonCounter", gsonMessage);
+        textView.setText(counter.toString());
+        intent.putExtra("gsonCounter", gsonCounter);
         setResult(RESULT_OK, intent);
 
-        finish();
+//        finish();
+
+
+//        finish();
     }
 
-    public void confirmNewCounter( ) {
+
+    public void confirmNewCounter(View view) {
+
         finish();
     }
 
