@@ -1,75 +1,60 @@
+/*
+https://stackoverflow.com/questions/16076985/listview-row-buttons-how-do-i-create-a-custom-adapter-that-connects-a-view-oncl
+ */
 package dehaan.kdehaan_countbook;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListAdapter;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class CounterListAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<String> list = new ArrayList<String>();
+
+public class CounterListAdapter extends ArrayAdapter<Counter> {
+    private List<Counter> counters;
+    private int layoutResourceId;
     private Context context;
 
-
-
-    public CounterListAdapter(ArrayList<String> list, Context context) {
-        this.list = list;
+    public CounterListAdapter(Context context, int layoutResourceId, List<Counter> counters) {
+        super(context, layoutResourceId, counters);
+        this.layoutResourceId = layoutResourceId;
         this.context = context;
+        this.counters = counters;
     }
 
     @Override
-    public int getCount() {
-        return list.size();
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View row = convertView;
+        CounterHolder holder = null;
+
+        holder = new CounterHolder();
+        holder.Counter = counters.get(position);
+        holder.removeCounterButton = (ImageButton)row.findViewById(R.id.counter_removeCounter);
+        holder.removeCounterButton.setTag(holder.Counter);
+
+        holder.name = (TextView)row.findViewById(R.id.counter_name);
+        holder.value = (TextView)row.findViewById(R.id.counter_value);
+
+        row.setTag(holder);
+        setupItem(holder);
+        return row;
+
     }
 
-    @Override
-    public Object getItem(int pos) {
-        return list.get(pos);
+    private void setupItem(CounterHolder holder) {
+        holder.name.setText(holder.Counter.getName());
+        holder.value.setText(String.valueOf(holder.Counter.getCurrentValue()));
+
     }
 
-    @Override
-    public long getItemId(int pos) {
-        return 0;
-        //just return 0 if your list items do not have an Id variable.
+    public static class CounterHolder {
+        Counter Counter;
+        TextView name;
+        TextView value;
+        ImageButton removeCounterButton;
     }
 
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item, null);
-        }
-
-        //Handle TextView and display string from your list
-        TextView listItemText = view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position));
-
-        //Handle buttons and add onClickListeners
-        Button decrementBtn = view.findViewById(R.id.increment_btn);
-        Button incrementBtn = view.findViewById(R.id.decrement_btn);
-
-        decrementBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
-                notifyDataSetChanged();
-            }
-        });
-        incrementBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                notifyDataSetChanged();
-            }
-        });
-
-        return view;
-    }
 }

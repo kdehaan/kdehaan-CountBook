@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/list_item_string"
+        android:id="@+id/counter_name"
+        android:hint="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/counter_value"
+        android:hint="Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -15,6 +27,7 @@
 
     <Button
         android:id="@+id/decrement_btn"
+        android:onClick="decrementCounterHandler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -23,12 +36,24 @@
         android:text="@string/decrement" />
 
     <Button
-        android:id="@+id/increment_btn"
+        android:id="@+id/counter_removeCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/decrement_btn"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:text="@string/increment" />
+        android:text="Remove Counter"
+        android:onClick="removeCounterOnClickHandler" />
 
-</RelativeLayout>
+
+<!--    <Button
+        android:id="@+id/increment_btn"
+        android:onClick="incrementCounterHandler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/decrement_btn"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="@string/increment" />-->
+
+</LinearLayout>

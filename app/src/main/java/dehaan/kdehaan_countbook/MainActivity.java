@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView CounterList;
 
-    private ArrayList<Counter> counters = new ArrayList<Counter>();
-    private ArrayAdapter<Counter> adapter;
+    private ArrayList<Counter> counters = new ArrayList<>();
+    private CounterListAdapter = new CounterListAdapter()
 
 
 
