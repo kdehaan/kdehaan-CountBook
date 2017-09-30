@@ -1,5 +1,6 @@
 package dehaan.kdehaan_countbook;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -34,14 +34,40 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Counter> adapter;
 
     public static final String EXTRA_MESSAGE = "dehaan.kdehaan_countbook.MESSAGE";
+    public static final Integer CREATE_CODE = 1;
+    public static final Integer EDIT_CODE = 2;
 
-    public void editCounter(View view) {
-        Intent intent = new Intent(this, EditActivity.class);
+    public void addCounter(View view) {
+        Intent intent = new Intent(this, createCounterActivity.class);
         Counter newCounter = new Counter("count0", 0);
         Gson gson = new Gson();
         String gsonCounter = gson.toJson(newCounter);
         intent.putExtra(EXTRA_MESSAGE, gsonCounter);
-        startActivity(intent);
+        startActivityForResult(intent, CREATE_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == CREATE_CODE  && resultCode  == RESULT_OK) {
+
+                Gson gson = new Gson();
+                String gsonString = data.getStringExtra("gsonCounter");
+                Counter newCounter = gson.fromJson(gsonString, Counter.class);
+                counters.add(newCounter);
+                adapter.notifyDataSetChanged();
+                saveInFile();
+            }
+            else if (requestCode == EDIT_CODE  && resultCode  == RESULT_OK) {
+
+                //do things
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
