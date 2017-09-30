@@ -1,6 +1,7 @@
 package dehaan.kdehaan_countbook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +33,16 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Counter> counters = new ArrayList<>();
     private ArrayAdapter<Counter> adapter;
 
+    public static final String EXTRA_MESSAGE = "dehaan.kdehaan_countbook.MESSAGE";
 
+    public void editCounter(View view) {
+        Intent intent = new Intent(this, EditActivity.class);
+        Counter newCounter = new Counter("count0", 0);
+        Gson gson = new Gson();
+        String gsonCounter = gson.toJson(newCounter);
+        intent.putExtra(EXTRA_MESSAGE, gsonCounter);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

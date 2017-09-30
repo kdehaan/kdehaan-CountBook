@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context="dehaan.kdehaan_countbook.MainActivity">
 
 
     <ListView
@@ -22,7 +24,12 @@
         android:gravity="center_vertical|right"
         android:layout_marginRight="26dp"
         android:text="@string/num_counter" />
-
+    <Button
+        android:id="@+id/newCounter"
+        android:onclick="editCounter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_counter" />
     <Button
         android:id="@+id/createCounter"
         android:layout_width="fill_parent"
