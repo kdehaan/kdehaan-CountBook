@@ -4,8 +4,10 @@ package dehaan.kdehaan_countbook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -49,19 +51,73 @@ public class editCounterActivity extends AppCompatActivity {
 
     }
 
+    private boolean isEmpty(EditText editText) {
+        return editText.getText().toString().trim().length() == 0;
+    }
+
+    private void displayError(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
     public void confirmChangeCounter(View view) {
-        EditText nameText = (EditText) findViewById(R.id.editName);
-        String nameString = nameText.getText().toString();
+        String nameString;
+        Integer initValInt;
+        Integer currentValInt;
+        String commentString;
 
-        EditText initValText = (EditText) findViewById(R.id.editInitVal);
-        Integer initValInt = Integer.parseInt(initValText.getText().toString());
 
-        EditText commentText = (EditText) findViewById(R.id.editComment);
-        String commentString = commentText.getText().toString();
+        try {
+            EditText nameText = (EditText) findViewById(R.id.editName);
+            nameString = nameText.getText().toString();
+            if (isEmpty(nameText)) {
+                displayError("Please enter a name");
+                return;
+            }
+        } catch (Exception e) {
+            displayError("Invalid name");
+            return;
+        }
 
-        Counter counter = new Counter(nameString, initValInt, commentString); // int not behaving
+        try {
+            EditText initValText = (EditText) findViewById(R.id.editInitVal);
+            initValInt = Integer.parseInt(initValText.getText().toString());
+            if (initValInt < 0) {
+                displayError("Please enter a positive value");
+                return;
+            }
+        } catch (Exception e) {
+            displayError("Invalid initial value");
+            return;
+        }
 
-//        Counter counter = new Counter("yes", 4, "sdf");
+        try {
+            EditText currentValText = (EditText) findViewById(R.id.editInitVal);
+            currentValInt = Integer.parseInt(currentValText.getText().toString());
+            if (currentValInt < 0) {
+                displayError("Please enter a positive value");
+                return;
+            }
+        } catch (Exception e) {
+            displayError("Invalid current value");
+            return;
+        }
+
+        try {
+            EditText commentText = (EditText) findViewById(R.id.editComment);
+            commentString = commentText.getText().toString();
+        } catch (Exception e) {
+            displayError("Invalid comment");   // probably can't happen but you never know
+            return;
+        }
+
+        counter.setName(nameString);
+        counter.setCurrentValue(currentValInt);
+        counter.setInitValue(initValInt);
+        counter.setComment(commentString);
+
+
         Gson gson = new Gson();
         String gsonCounter = gson.toJson(counter);
 
@@ -72,27 +128,3 @@ public class editCounterActivity extends AppCompatActivity {
         finish();
     }
 }
-
-/*    public void confirmChangeCounter(View view) {
-        String nameString = nameText.getText().toString();
-
-        Integer initValInt = Integer.parseInt(initValText.getText().toString());
-
-        Integer currentValInt = Integer.parseInt(initValText.getText().toString());
-
-
-        String commentString = commentText.getText().toString();
-
-        counter.setName(nameString);
-        counter.setInitValue(initValInt);
-        counter.setCurrentValue(currentValInt);
-        counter.setComment(commentString);
-
-        Gson gson = new Gson();
-        String gsonCounter = gson.toJson(counter);
-
-        intent.putExtra("gsonCounter", gsonCounter);
-        setResult(RESULT_OK, intent);
-
-        finish();
-    }*/

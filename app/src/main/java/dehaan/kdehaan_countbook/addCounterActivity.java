@@ -59,6 +59,10 @@ public class addCounterActivity extends AppCompatActivity {
         try {
             EditText initValText = (EditText) findViewById(R.id.editInitVal);
             initValInt = Integer.parseInt(initValText.getText().toString());
+            if (initValInt < 0) {
+                displayError("Please enter a positive value");
+                return;
+            }
         } catch (Exception e) {
             displayError("Invalid initial value");
             return;
@@ -72,11 +76,6 @@ public class addCounterActivity extends AppCompatActivity {
             return;
         }
 
-
-
-
-
-//        Counter counter = new Counter("sdf", 1, "");
 
         Counter counter = new Counter(nameString, initValInt, commentString); // int not behaving
 
