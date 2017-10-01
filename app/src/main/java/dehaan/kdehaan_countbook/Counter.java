@@ -68,9 +68,7 @@ public class Counter {
      * Increments currentValue by 1
      */
     public void increment() {
-        if (this.currentValue > 0) {
-            this.currentValue += 1;
-        }
+        this.currentValue += 1;
     }
 
     /**
