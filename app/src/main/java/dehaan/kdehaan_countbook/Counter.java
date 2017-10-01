@@ -58,17 +58,28 @@ public class Counter {
     }
 
     /**
+     * Resets value to initValue
+     */
+    public void reset() {
+        this.currentValue = this.initValue;
+    }
+
+    /**
      * Increments currentValue by 1
      */
     public void increment() {
-        this.currentValue += 1;
+        if (this.currentValue > 0) {
+            this.currentValue += 1;
+        }
     }
 
     /**
      * decrements currentValue by 1
      */
     public void decrement() {
-        this.currentValue -= 1;
+        if (this.currentValue > 0) {
+            this.currentValue -= 1;
+        }
     }
 
 
@@ -79,7 +90,7 @@ public class Counter {
      */
     @Override
     public String toString() {
-        return name.toString() + " " + currentValue.toString() + " " + date.toString();
+        return name.toString() + " - " + currentValue.toString() + "\nCreated " + date.toString();
 
     }
 

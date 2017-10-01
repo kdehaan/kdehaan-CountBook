@@ -18,7 +18,9 @@
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/editInitVal"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
     <EditText
         android:id="@+id/editInitVal"
@@ -33,7 +35,9 @@
         app:layout_constraintBottom_toTopOf="@+id/editComment"
         app:layout_constraintTop_toBottomOf="@+id/editCurrentVal"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
     <EditText
         android:id="@+id/editCurrentVal"
@@ -48,7 +52,9 @@
         app:layout_constraintBottom_toTopOf="@+id/editInitVal"
         app:layout_constraintTop_toBottomOf="@+id/editName"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
     <EditText
         android:id="@+id/editName"
@@ -57,13 +63,16 @@
         android:ems="10"
         android:hint="@string/hint_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editCurrentVal"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/incrementCounter"
+        app:layout_constraintVertical_bias="0.533" />
 
     <Button
         android:id="@+id/button"
@@ -72,52 +81,93 @@
         android:text="@string/confirm_changes"
         android:onClick="confirmChangeCounter"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editComment" />
+        app:layout_constraintTop_toBottomOf="@+id/editComment"
+        app:layout_constraintRight_toLeftOf="@+id/deleteCounter" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="14dp"
         android:text="@string/title_name"
         android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/editName"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="14dp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="16dp"
         android:text="@string/title_currentVal"
         android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/editCurrentVal"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="16dp"
         android:text="@string/title_initVal"
         android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/editInitVal"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="16dp"
         android:text="@string/title_comment"
         android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/editComment"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp" />
+
+    <Button
+        android:id="@+id/deleteCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_counter"
+        android:onClick="deleteCounter"
+        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button" />
+
+    <Button
+        android:id="@+id/incrementCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/increment"
+        android:onClick="incrementCounter"
+        app:layout_constraintBaseline_toBaselineOf="@+id/decrementCounter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/decrementCounter" />
+
+    <Button
+        android:id="@+id/decrementCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/decrement"
+        android:onClick="decrementCounter"
+        app:layout_constraintBaseline_toBaselineOf="@+id/resetCounter"
+        app:layout_constraintLeft_toRightOf="@+id/incrementCounter"
+        app:layout_constraintRight_toLeftOf="@+id/resetCounter" />
+
+    <Button
+        android:id="@+id/resetCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset_counter"
+        android:onClick="resetCounter"
+        app:layout_constraintLeft_toRightOf="@+id/decrementCounter"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
 
 </android.support.constraint.ConstraintLayout>

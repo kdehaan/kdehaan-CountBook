@@ -28,27 +28,31 @@ public class editCounterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_counter);
-//
+
         intent = getIntent();
         String gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         arrayIndex = intent.getStringExtra("arrayIndex");
 
         Gson gson = new Gson();
         counter = gson.fromJson(gsonCounter, Counter.class);
-//
+
+        updateDisplay();
+
+
+    }
+
+    private void updateDisplay() {
         nameText = (EditText) findViewById(R.id.editName);
         nameText.setText(counter.getName());
 
         initValText = (EditText) findViewById(R.id.editInitVal);
         initValText.setText(counter.getInitValue().toString());
-//
+
         currentValText = (EditText) findViewById(R.id.editCurrentVal);
         currentValText.setText(counter.getCurrentValue().toString());
-//
+
         commentText = (EditText) findViewById(R.id.editComment);
         commentText.setText(counter.getComment());
-
-
     }
 
     private boolean isEmpty(EditText editText) {
@@ -59,6 +63,25 @@ public class editCounterActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+    }
+
+    public void incrementCounter(View view) {
+        counter.increment();
+        updateDisplay();
+    }
+
+    public void decrementCounter(View view) {
+        counter.decrement();
+        updateDisplay();
+    }
+
+    public void resetCounter(View view) {
+        counter.reset();
+        updateDisplay();
+    }
+
+    public void deleteCounter(View view){
+        
     }
 
     public void confirmChangeCounter(View view) {
@@ -120,7 +143,7 @@ public class editCounterActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
         String gsonCounter = gson.toJson(counter);
-
+        intent.putExtra("delete", "false");
         intent.putExtra("gsonCounter", gsonCounter);
         intent.putExtra("arrayIndex", arrayIndex);
         setResult(RESULT_OK, intent);

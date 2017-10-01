@@ -89,4 +89,6 @@
     <string name="title_currentVal">Value</string>
     <string name="title_initVal">Base Value</string>
     <string name="title_comment">Comment</string>
+    <string name="delete_counter">Delete Counter</string>
+    <string name="reset_counter">Reset</string>
 </resources>

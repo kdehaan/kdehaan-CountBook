@@ -55,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
             else if (requestCode == EDIT_CODE  && resultCode  == RESULT_OK) {
 
                 Gson gson = new Gson();
-                String gsonString = data.getStringExtra("gsonCounter");
+
+
                 String arrayIndex = data.getStringExtra("arrayIndex");
+                String gsonString = data.getStringExtra("gsonCounter");
                 Counter newCounter = gson.fromJson(gsonString, Counter.class);
 
                 counters.set(Integer.parseInt(arrayIndex), newCounter);
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        updateScreen();
         Button addButton = (Button) findViewById(R.id.createCounter);
         Button clearButton = (Button) findViewById(R.id.clearCounters);
         CounterList = (ListView) findViewById(R.id.CounterList);
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Counter editingCounter = (Counter)o;
 
                 Intent intent = new Intent(MainActivity.this, editCounterActivity.class);
-//
+
                 Gson gson = new Gson();
                 String gsonCounter = gson.toJson(editingCounter);
                 intent.putExtra(EXTRA_MESSAGE, gsonCounter);
