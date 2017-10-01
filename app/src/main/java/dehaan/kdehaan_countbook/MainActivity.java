@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button addButton = (Button) findViewById(R.id.createCounter);
-        Button clearButton = (Button) findViewById(R.id.clearCounters);
         CounterList = (ListView) findViewById(R.id.CounterList);
 
         CounterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,14 +109,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                setResult(RESULT_OK);
-                counters.clear();
-                updateScreen();
-
-            }
-        });
     }
 
     @Override
