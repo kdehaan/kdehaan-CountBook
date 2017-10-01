@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, CREATE_CODE);
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
@@ -62,7 +65,12 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (requestCode == EDIT_CODE  && resultCode  == RESULT_OK) {
 
-                //do things
+                Gson gson = new Gson();
+                String gsonString = data.getStringExtra("gsonCounter");
+                Counter newCounter = gson.fromJson(gsonString, Counter.class);
+                counters.add(newCounter);
+                adapter.notifyDataSetChanged();
+                saveInFile();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,6 +86,23 @@ public class MainActivity extends AppCompatActivity {
         Button addButton = (Button) findViewById(R.id.createCounter);
         Button clearButton = (Button) findViewById(R.id.clearCounters);
         CounterList = (ListView) findViewById(R.id.CounterList);
+
+        CounterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Object o = CounterList.getItemAtPosition(position);
+                Counter editingCounter = (Counter)o;
+
+                Intent intent = new Intent(MainActivity.this, editCounterActivity.class);
+//
+                Gson gson = new Gson();
+                String gsonCounter = gson.toJson(editingCounter);
+                intent.putExtra(EXTRA_MESSAGE, gsonCounter);
+                startActivityForResult(intent, EDIT_CODE);
+
+
+            }
+        });
 
         addButton.setOnClickListener(new View.OnClickListener() {
 

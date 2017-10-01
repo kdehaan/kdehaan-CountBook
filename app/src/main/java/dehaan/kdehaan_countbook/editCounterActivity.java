@@ -24,24 +24,24 @@ public class editCounterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_counter);
-
-        intent = getIntent();
-        String gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-        Gson gson = new Gson();
-        counter = gson.fromJson(gsonCounter, Counter.class);
-
-        nameText = (EditText) findViewById(R.id.editName);
-        nameText.setText(counter.getName());
-
-        initValText = (EditText) findViewById(R.id.editInitVal);
-        initValText.setText(counter.getInitValue().toString());
-
-        currentValText = (EditText) findViewById(R.id.editCurrentVal);
-        currentValText.setText(counter.getCurrentValue().toString());
-
-        commentText = (EditText) findViewById(R.id.editComment);
-        commentText.setText(counter.getComment());
+//
+//        intent = getIntent();
+//        String gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+//
+//        Gson gson = new Gson();
+//        counter = gson.fromJson(gsonCounter, Counter.class);
+//
+//        nameText = (EditText) findViewById(R.id.editName);
+//        nameText.setText(counter.getName());
+//
+//        initValText = (EditText) findViewById(R.id.editInitVal);
+//        initValText.setText(counter.getInitValue().toString());
+//
+//        currentValText = (EditText) findViewById(R.id.editCurrentVal);
+//        currentValText.setText(counter.getCurrentValue().toString());
+//
+//        commentText = (EditText) findViewById(R.id.editComment);
+//        commentText.setText(counter.getComment());
 
 
     }
