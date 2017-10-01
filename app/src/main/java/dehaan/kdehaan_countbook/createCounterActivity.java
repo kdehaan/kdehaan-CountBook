@@ -11,10 +11,10 @@ import com.google.gson.Gson;
 
 
 public class createCounterActivity extends AppCompatActivity {
-    private Gson gson = new Gson();
+
     private Intent intent;
-    private String gsonCounter;
-    private Counter counter;
+//    private String gsonCounter;
+//    private Counter counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,14 @@ public class createCounterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_counter);
 
         intent = getIntent();
-        gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-        counter = gson.fromJson(gsonCounter, Counter.class);
-
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(counter.toString());
-        intent.putExtra("gsonCounter", gsonCounter);
-        setResult(RESULT_OK, intent);
+//        gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+//
+//        counter = gson.fromJson(gsonCounter, Counter.class);
+//
+//        TextView textView = (TextView) findViewById(R.id.textView);
+//        textView.setText(counter.toString());
+//        intent.putExtra("gsonCounter", gsonCounter);
+//        setResult(RESULT_OK, intent);
 
 //        finish();
 
@@ -41,16 +41,21 @@ public class createCounterActivity extends AppCompatActivity {
 
     public void confirmNewCounter(View view) {
         EditText nameText = (EditText) findViewById(R.id.editName);
-        String nameString = nameText.toString();
+        String nameString = nameText.getText().toString();
 
         EditText initValText = (EditText) findViewById(R.id.editInitVal);
-        String initValString = initValText.toString();
+        Integer initValInt = Integer.parseInt(initValText.getText().toString());
 
         EditText commentText = (EditText) findViewById(R.id.editComment);
-        String commentString = commentText.toString();
+        String commentString = commentText.getText().toString();
 
-        Counter counter = new Counter(nameString, 5, commentString); // int not behaving
+        Counter counter = new Counter(nameString, initValInt, commentString); // int not behaving
+
+        Gson gson = new Gson();
         String gsonCounter = gson.toJson(counter);
+
+        intent.putExtra("gsonCounter", gsonCounter);
+        setResult(RESULT_OK, intent);
 
         finish();
     }

@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void addCounter(View view) {
         Intent intent = new Intent(this, createCounterActivity.class);
-        Counter newCounter = new Counter("count0", 0);
-        Gson gson = new Gson();
-        String gsonCounter = gson.toJson(newCounter);
-        intent.putExtra(EXTRA_MESSAGE, gsonCounter);
+//        Counter newCounter = new Counter("count0", 0);
+//        Gson gson = new Gson();
+//        String gsonCounter = gson.toJson(newCounter);
+//        intent.putExtra(EXTRA_MESSAGE, gsonCounter);
         startActivityForResult(intent, CREATE_CODE);
     }
 
