@@ -93,7 +93,7 @@ public class editCounterActivity extends AppCompatActivity {
         }
 
         try {
-            EditText currentValText = (EditText) findViewById(R.id.editInitVal);
+            EditText currentValText = (EditText) findViewById(R.id.editCurrentVal);
             currentValInt = Integer.parseInt(currentValText.getText().toString());
             if (currentValInt < 0) {
                 displayError("Please enter a positive value");

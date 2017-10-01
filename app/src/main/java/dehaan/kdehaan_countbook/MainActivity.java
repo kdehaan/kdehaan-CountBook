@@ -120,17 +120,23 @@ public class MainActivity extends AppCompatActivity {
         loadFromFile();
         adapter = new ArrayAdapter<>(this, R.layout.list_item, counters);
         CounterList.setAdapter(adapter);
+        updateCounterQuantity();
+
     }
 
     private void updateScreen() {
+        updateCounterQuantity();
+        saveInFile();
+        adapter.notifyDataSetChanged();
+    }
+
+    private void updateCounterQuantity() {
         TextView counterQuant = (TextView) findViewById(R.id.counterQuantity);
         String counterQuantifier = " Counters";
         if (counters.size() == 1){
             counterQuantifier = " Counter";
         }
         counterQuant.setText(Integer.toString(counters.size())+ counterQuantifier);
-        saveInFile();
-        adapter.notifyDataSetChanged();
     }
 
     private void loadFromFile() {
