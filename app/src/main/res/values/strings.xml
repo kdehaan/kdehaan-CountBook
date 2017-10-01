@@ -83,4 +83,5 @@
     <string name="default_name">Name</string>
     <string name="default_initVal">0</string>
     <string name="default_comment">Comment</string>
+    <string name="confirm_changes">Save Changes</string>
 </resources>
