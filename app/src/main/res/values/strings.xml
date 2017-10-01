@@ -85,4 +85,5 @@
     <string name="hint_comment">Comment</string>
     <string name="confirm_changes">Save Changes</string>
     <string name="title_activity_create">New Counter</string>
+    <string name="hint_currentVal">Current Value</string>
 </resources>

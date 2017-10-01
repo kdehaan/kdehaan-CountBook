@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context="dehaan.kdehaan_countbook.MainActivity">
 
-    <TextView
-        android:id="@+id/counterQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.049" />
-
     <EditText
         android:id="@+id/editComment"
         android:layout_width="0dp"
@@ -28,7 +17,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/editInitVal" />
+        app:layout_constraintTop_toBottomOf="@+id/editInitVal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <EditText
         android:id="@+id/editInitVal"
@@ -41,7 +32,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/editComment"
-        app:layout_constraintTop_toBottomOf="@+id/editName" />
+        app:layout_constraintTop_toBottomOf="@+id/editCurrentVal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:id="@+id/editCurrentVal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_currentVal"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editInitVal"
+        app:layout_constraintTop_toBottomOf="@+id/editName"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <EditText
         android:id="@+id/editName"
@@ -50,24 +58,13 @@
         android:ems="10"
         android:hint="@string/hint_name"
         android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/editCurrentVal"
+        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/editInitVal"
-        app:layout_constraintTop_toBottomOf="@+id/editCurrentVal" />
-
-    <EditText
-        android:id="@+id/editCurrentVal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/hint_initVal"
-        android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/editName"
-        app:layout_constraintTop_toBottomOf="@+id/counterQuantity" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp" />
 
     <Button
         android:id="@+id/button"
