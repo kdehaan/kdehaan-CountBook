@@ -42,18 +42,16 @@ public class createCounterActivity extends AppCompatActivity {
     public void confirmNewCounter(View view) {
         EditText nameText = (EditText) findViewById(R.id.editName);
         String nameString = nameText.toString();
-//
-//        EditText initValText = (EditText) findViewById(R.id.editInitVal);
-//        Integer initValInt = Integer.parseInt(initValText.toString());
+
+        EditText initValText = (EditText) findViewById(R.id.editInitVal);
+        String initValString = initValText.toString();
 
         EditText commentText = (EditText) findViewById(R.id.editComment);
         String commentString = commentText.toString();
 
-//        Counter counter = new Counter(nameString, initValInt, commentString);
-//
-//        Gson gson = new Gson();
-//
-//        String gsonCounter = gson.toJson(counter);
+        Counter counter = new Counter(nameString, 5, commentString); // int not behaving
+        String gsonCounter = gson.toJson(counter);
+
         finish();
     }
 
