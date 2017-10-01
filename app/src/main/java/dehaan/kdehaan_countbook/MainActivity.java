@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 Object o = CounterList.getItemAtPosition(position);
                 Counter editingCounter = (Counter)o;
 
-                Intent intent = new Intent(MainActivity.this, editCounterActivity.class);
+                Intent intent = new Intent(MainActivity.this, createCounterActivity.class);
 //
                 Gson gson = new Gson();
                 String gsonCounter = gson.toJson(editingCounter);
