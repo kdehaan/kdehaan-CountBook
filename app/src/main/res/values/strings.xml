@@ -80,9 +80,9 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="default_name">Name</string>
-    <string name="default_initVal">0</string>
-    <string name="default_comment">Comment</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_initVal">Initial Value</string>
+    <string name="hint_comment">Comment</string>
     <string name="confirm_changes">Save Changes</string>
     <string name="title_activity_create">New Counter</string>
 </resources>
