@@ -66,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Gson gson = new Gson();
                 String gsonString = data.getStringExtra("gsonCounter");
+                String arrayIndex = data.getStringExtra("arrayIndex");
                 Counter newCounter = gson.fromJson(gsonString, Counter.class);
-                counters.add(newCounter);
+
+                counters.set(Integer.parseInt(arrayIndex), newCounter);
                 adapter.notifyDataSetChanged();
                 saveInFile();
             }
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 String gsonCounter = gson.toJson(editingCounter);
                 intent.putExtra(EXTRA_MESSAGE, gsonCounter);
+                intent.putExtra("arrayIndex", Integer.toString(position));
                 startActivityForResult(intent, EDIT_CODE);
 
 

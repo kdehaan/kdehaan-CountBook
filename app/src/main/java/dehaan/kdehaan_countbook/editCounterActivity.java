@@ -19,6 +19,8 @@ public class editCounterActivity extends AppCompatActivity {
     private EditText currentValText;
     private EditText commentText;
 
+    private String arrayIndex;
+;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,7 +29,8 @@ public class editCounterActivity extends AppCompatActivity {
 //
         intent = getIntent();
         String gsonCounter = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-//
+        arrayIndex = intent.getStringExtra("arrayIndex");
+
         Gson gson = new Gson();
         counter = gson.fromJson(gsonCounter, Counter.class);
 //
@@ -63,6 +66,7 @@ public class editCounterActivity extends AppCompatActivity {
         String gsonCounter = gson.toJson(counter);
 
         intent.putExtra("gsonCounter", gsonCounter);
+        intent.putExtra("arrayIndex", arrayIndex);
         setResult(RESULT_OK, intent);
 
         finish();
