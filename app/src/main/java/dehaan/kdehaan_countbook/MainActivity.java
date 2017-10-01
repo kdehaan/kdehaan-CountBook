@@ -37,16 +37,6 @@ public class MainActivity extends AppCompatActivity {
     public static final Integer CREATE_CODE = 1;
     public static final Integer EDIT_CODE = 2;
 
-    public void addCounter(View view) {
-        Intent intent = new Intent(this, addCounterActivity.class);
-//        Counter newCounter = new Counter("count0", 0);
-//        Gson gson = new Gson();
-//        String gsonCounter = gson.toJson(newCounter);
-//        intent.putExtra(EXTRA_MESSAGE, gsonCounter);
-        startActivityForResult(intent, CREATE_CODE);
-    }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -109,10 +99,8 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                setResult(RESULT_OK);
-                counters.add(new Counter("new counter", 0));
-                adapter.notifyDataSetChanged();
-                saveInFile();
+                Intent intent = new Intent(MainActivity.this, addCounterActivity.class);
+                startActivityForResult(intent, CREATE_CODE);
             }
         });
 
@@ -144,9 +132,7 @@ public class MainActivity extends AppCompatActivity {
             counters = gson.fromJson(in, listType);
         } catch(FileNotFoundException e) {
             counters = new ArrayList<>();
-        } /*catch(IOException e) {
-            throw new RuntimeException(e);
-        }*/
+        }
     }
 
     private void saveInFile() {
