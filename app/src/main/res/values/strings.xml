@@ -80,10 +80,13 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="hint_name">Name</string>
-    <string name="hint_initVal">Initial Value</string>
-    <string name="hint_comment">Comment</string>
+    <string name="hint_name">New Counter</string>
+    <string name="hint_initVal">0</string>
     <string name="confirm_changes">Save Changes</string>
     <string name="title_activity_create">New Counter</string>
-    <string name="hint_currentVal">Current Value</string>
+    <string name="hint_currentVal">0</string>
+    <string name="title_name">Name</string>
+    <string name="title_currentVal">Value</string>
+    <string name="title_initVal">Base Value</string>
+    <string name="title_comment">Comment</string>
 </resources>
