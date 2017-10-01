@@ -81,7 +81,14 @@ public class editCounterActivity extends AppCompatActivity {
     }
 
     public void deleteCounter(View view){
-        
+        Gson gson = new Gson();
+        String gsonCounter = gson.toJson(counter);
+        intent.putExtra("delete", "true");
+        intent.putExtra("gsonCounter", gsonCounter);
+        intent.putExtra("arrayIndex", arrayIndex);
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 
     public void confirmChangeCounter(View view) {

@@ -58,9 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                 String arrayIndex = data.getStringExtra("arrayIndex");
+                String deleteCounter = data.getStringExtra("delete");
+                if (Boolean.parseBoolean(deleteCounter)) {
+                    counters.remove(Integer.parseInt(arrayIndex));
+                    updateScreen();
+                    return;
+                }
                 String gsonString = data.getStringExtra("gsonCounter");
                 Counter newCounter = gson.fromJson(gsonString, Counter.class);
-
                 counters.set(Integer.parseInt(arrayIndex), newCounter);
                 updateScreen();
             }
