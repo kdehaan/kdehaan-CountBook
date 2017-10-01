@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -53,6 +54,9 @@ public class editCounterActivity extends AppCompatActivity {
 
         commentText = (EditText) findViewById(R.id.editComment);
         commentText.setText(counter.getComment());
+
+        TextView dateText = (TextView) findViewById(R.id.dateText);
+        dateText.setText("Created "+counter.getDate().toString());
     }
 
     private boolean isEmpty(EditText editText) {
