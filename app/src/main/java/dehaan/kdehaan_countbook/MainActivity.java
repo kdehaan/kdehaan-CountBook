@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -49,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 String gsonString = data.getStringExtra("gsonCounter");
                 Counter newCounter = gson.fromJson(gsonString, Counter.class);
                 counters.add(newCounter);
-                adapter.notifyDataSetChanged();
-                saveInFile();
+                updateScreen();
             }
             else if (requestCode == EDIT_CODE  && resultCode  == RESULT_OK) {
 
@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Counter newCounter = gson.fromJson(gsonString, Counter.class);
 
                 counters.set(Integer.parseInt(arrayIndex), newCounter);
-                adapter.notifyDataSetChanged();
-                saveInFile();
+                updateScreen();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        updateScreen();
         Button addButton = (Button) findViewById(R.id.createCounter);
         Button clearButton = (Button) findViewById(R.id.clearCounters);
         CounterList = (ListView) findViewById(R.id.CounterList);
@@ -108,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setResult(RESULT_OK);
                 counters.clear();
-                saveInFile();
-                adapter.notifyDataSetChanged();
+                updateScreen();
 
             }
         });
@@ -121,6 +120,17 @@ public class MainActivity extends AppCompatActivity {
         loadFromFile();
         adapter = new ArrayAdapter<>(this, R.layout.list_item, counters);
         CounterList.setAdapter(adapter);
+    }
+
+    private void updateScreen() {
+        TextView counterQuant = (TextView) findViewById(R.id.counterQuantity);
+        String counterQuantifier = " Counters";
+        if (counters.size() == 1){
+            counterQuantifier = " Counter";
+        }
+        counterQuant.setText(Integer.toString(counters.size())+ counterQuantifier);
+        saveInFile();
+        adapter.notifyDataSetChanged();
     }
 
     private void loadFromFile() {
