@@ -40,20 +40,38 @@ public class addCounterActivity extends AppCompatActivity {
 
     public void confirmNewCounter(View view) {
 
+        String nameString;
+        Integer initValInt;
+        String commentString;
 
-
-        EditText nameText = (EditText) findViewById(R.id.editName);
-        if (isEmpty(nameText)) {
-            displayError("Invalid Name");
+        try {
+            EditText nameText = (EditText) findViewById(R.id.editName);
+            nameString = nameText.getText().toString();
+            if (isEmpty(nameText)) {
+                displayError("Please enter a name");
+                return;
+            }
+        } catch (Exception e) {
+            displayError("Invalid name");
             return;
         }
-        String nameString = nameText.getText().toString();
 
-        EditText initValText = (EditText) findViewById(R.id.editInitVal);
-        Integer initValInt = Integer.parseInt(initValText.getText().toString());
+        try {
+            EditText initValText = (EditText) findViewById(R.id.editInitVal);
+            initValInt = Integer.parseInt(initValText.getText().toString());
+        } catch (Exception e) {
+            displayError("Invalid initial value");
+            return;
+        }
 
-        EditText commentText = (EditText) findViewById(R.id.editComment);
-        String commentString = commentText.getText().toString();
+        try {
+            EditText commentText = (EditText) findViewById(R.id.editComment);
+            commentString = commentText.getText().toString();
+        } catch (Exception e) {
+            displayError("Invalid comment");   // probably can't happen but you never know
+            return;
+        }
+
 
 
 
