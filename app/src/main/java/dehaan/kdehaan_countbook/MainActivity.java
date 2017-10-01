@@ -1,6 +1,5 @@
 package dehaan.kdehaan_countbook;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final Integer EDIT_CODE = 2;
 
     public void addCounter(View view) {
-        Intent intent = new Intent(this, createCounterActivity.class);
+        Intent intent = new Intent(this, addCounterActivity.class);
 //        Counter newCounter = new Counter("count0", 0);
 //        Gson gson = new Gson();
 //        String gsonCounter = gson.toJson(newCounter);
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 Object o = CounterList.getItemAtPosition(position);
                 Counter editingCounter = (Counter)o;
 
-                Intent intent = new Intent(MainActivity.this, createCounterActivity.class);
+                Intent intent = new Intent(MainActivity.this, editCounterActivity.class);
 //
                 Gson gson = new Gson();
                 String gsonCounter = gson.toJson(editingCounter);
