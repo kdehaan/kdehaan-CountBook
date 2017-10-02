@@ -1,3 +1,14 @@
+/*
+ * Counter
+ *
+ * Version 1.0
+ *
+ * September 27, 2017
+ *
+ * Copyright © 2017 Kevin de Haan, CMPUT301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the COde of Student Behavior at the University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact kdehaan@ualberta.ca
+ */
 package dehaan.kdehaan_countbook;
 
 
@@ -12,18 +23,29 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+/**
+ * Manages the edit counter page
+ *
+ * @author kdehaan
+ * @version 1.0
+ * @since 1.0
+ */
 public class editCounterActivity extends AppCompatActivity {
 
     private Intent intent;
     private Counter counter;
-    //
     private EditText nameText;
     private EditText initValText;
     private EditText currentValText;
     private EditText commentText;
 
     private String arrayIndex;
-;
+
+    /**
+     * onCreate function parses gson Counter and sets up the XML layout
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +64,10 @@ public class editCounterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Updates the displayed values on the activity when called
+     * Receives data from this.counter
+     */
     private void updateDisplay() {
         nameText = (EditText) findViewById(R.id.editName);
         nameText.setText(counter.getName());
