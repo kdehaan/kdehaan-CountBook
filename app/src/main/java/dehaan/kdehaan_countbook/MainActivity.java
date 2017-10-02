@@ -1,3 +1,14 @@
+/*
+ * Counter
+ *
+ * Version 1.0
+ *
+ * September 27, 2017
+ *
+ * Copyright © 2017 Kevin de Haan, CMPUT301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the COde of Student Behavior at the University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact kdehaan@ualberta.ca
+ */
 package dehaan.kdehaan_countbook;
 
 import android.content.Context;
@@ -25,6 +36,13 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Manages main list of counters
+ *
+ * @author kdehaan
+ * @version 1.0
+ * @since 1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "countBook.sav";
@@ -39,11 +57,19 @@ public class MainActivity extends AppCompatActivity {
     public static final Integer EDIT_CODE = 2;
 
 
+    /**
+     * Runs when an intent is returned from a sub-activity
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             super.onActivityResult(requestCode, resultCode, data);
 
+            // New Counter being created
             if (requestCode == CREATE_CODE  && resultCode  == RESULT_OK) {
 
                 Gson gson = new Gson();
@@ -52,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 counters.add(newCounter);
                 updateScreen();
             }
+            // Existing Counter being edited
             else if (requestCode == EDIT_CODE  && resultCode  == RESULT_OK) {
 
                 Gson gson = new Gson();
@@ -75,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Runs on creation, sets up the main window
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         Button addButton = (Button) findViewById(R.id.createCounter);
         CounterList = (ListView) findViewById(R.id.CounterList);
 
+        // Edit Counter when Counter is clicked
         CounterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -101,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Add new counter onClick
         addButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -111,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Runs on start, loads data from file and creates adapter
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -121,12 +158,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Refreshes the screen
+     */
     private void updateScreen() {
         updateCounterQuantity();
         saveInFile();
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Refreshes the Counter counter
+     */
     private void updateCounterQuantity() {
         TextView counterQuant = (TextView) findViewById(R.id.counterQuantity);
         String counterQuantifier = " Counters";
@@ -136,6 +179,9 @@ public class MainActivity extends AppCompatActivity {
         counterQuant.setText(Integer.toString(counters.size())+ counterQuantifier);
     }
 
+    /**
+     * Loads counters from file
+     */
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -148,6 +194,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves counters to file
+     */
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);

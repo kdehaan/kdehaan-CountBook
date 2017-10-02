@@ -14,12 +14,9 @@ package dehaan.kdehaan_countbook;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -30,7 +27,7 @@ import com.google.gson.Gson;
  * @version 1.0
  * @since 1.0
  */
-public class editCounterActivity extends AppCompatActivity {
+public class editCounterActivity extends addCounterActivity {
 
     private Intent intent;
     private Counter counter;
@@ -85,31 +82,37 @@ public class editCounterActivity extends AppCompatActivity {
         dateText.setText("Created "+counter.getDate().toString());
     }
 
-    private boolean isEmpty(EditText editText) {
-        return editText.getText().toString().trim().length() == 0;
-    }
-
-    private void displayError(String message) {
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
-
+    /**
+     * onClick, increments the counter
+     * @param view
+     */
     public void incrementCounter(View view) {
         counter.increment();
         updateDisplay();
     }
 
+    /**
+     * onClick, decrements the counter
+     * @param view
+     */
     public void decrementCounter(View view) {
         counter.decrement();
         updateDisplay();
     }
 
+    /**
+     * onClick, resets the counter to init value
+     * @param view
+     */
     public void resetCounter(View view) {
         counter.reset();
         updateDisplay();
     }
 
+    /**
+     * onClick, deletes the counter
+     * @param view
+     */
     public void deleteCounter(View view){
         intent.putExtra("delete", "true");
         intent.putExtra("arrayIndex", arrayIndex);
@@ -118,7 +121,12 @@ public class editCounterActivity extends AppCompatActivity {
         finish();
     }
 
-    public void confirmChangeCounter(View view) {
+    /**
+     * Confirm changes made to counter and send gson Counter to main activity
+     * @param view
+     */
+    @Override
+    public void confirmCounter(View view) {
         String nameString;
         Integer initValInt;
         Integer currentValInt;
