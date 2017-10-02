@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 /**
  * Manages the edit counter page
  *
+ * @see addCounterActivity
+ * @see MainActivity
  * @author kdehaan
  * @version 1.0
  * @since 1.0

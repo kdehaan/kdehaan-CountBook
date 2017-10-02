@@ -39,6 +39,8 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Manages main list of counters
  *
+ * @see addCounterActivity
+ * @see editCounterActivity
  * @author kdehaan
  * @version 1.0
  * @since 1.0

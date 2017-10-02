@@ -25,6 +25,8 @@ import com.google.gson.Gson;
 /**
  * Manages the add counter page
  *
+ * @see editCounterActivity
+ * @see MainActivity
  * @author kdehaan
  * @version 1.0
  * @since 1.0
